@@ -36,6 +36,8 @@
 		BDDF9EE327B2DFB8006228A1 /* CardDetailsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDDF9EDD27B2DFB8006228A1 /* CardDetailsProtocol.swift */; };
 		BDDF9EE427B2DFB8006228A1 /* CardDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDDF9EDE27B2DFB8006228A1 /* CardDetailsVC.swift */; };
 		BDDF9EE627B2E542006228A1 /* Extension + UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDDF9EE527B2E542006228A1 /* Extension + UIFont.swift */; };
+		BDDF9EF527B3F5A7006228A1 /* Util + Identifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDDF9EF427B3F5A7006228A1 /* Util + Identifier.swift */; };
+		BDDF9EF927B4271D006228A1 /* OtherCardsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDDF9EF827B4271D006228A1 /* OtherCardsCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +95,8 @@
 		BDDF9EDD27B2DFB8006228A1 /* CardDetailsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailsProtocol.swift; sourceTree = "<group>"; };
 		BDDF9EDE27B2DFB8006228A1 /* CardDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailsVC.swift; sourceTree = "<group>"; };
 		BDDF9EE527B2E542006228A1 /* Extension + UIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIFont.swift"; sourceTree = "<group>"; };
+		BDDF9EF427B3F5A7006228A1 /* Util + Identifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Util + Identifier.swift"; sourceTree = "<group>"; };
+		BDDF9EF827B4271D006228A1 /* OtherCardsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherCardsCollectionViewCell.swift; sourceTree = "<group>"; };
 		C51958666F0B372A7A00474D /* Pods-PokemonCard-PokemonCardUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PokemonCard-PokemonCardUITests.release.xcconfig"; path = "Target Support Files/Pods-PokemonCard-PokemonCardUITests/Pods-PokemonCard-PokemonCardUITests.release.xcconfig"; sourceTree = "<group>"; };
 		F33C2CDAA26D1B4C66F21AB2 /* Pods-PokemonCardTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PokemonCardTests.debug.xcconfig"; path = "Target Support Files/Pods-PokemonCardTests/Pods-PokemonCardTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -173,6 +177,7 @@
 		BDDF9E7C27B267C3006228A1 /* PokemonCard */ = {
 			isa = PBXGroup;
 			children = (
+				BDDF9EFC27B43CBD006228A1 /* Core */,
 				BDDF9EBE27B2AC94006228A1 /* Extensions */,
 				BDDF9EC327B2AE38006228A1 /* Utils */,
 				BDDF9EAD27B26ABE006228A1 /* Modules */,
@@ -241,6 +246,7 @@
 				BDDF9EC427B2AE47006228A1 /* Util + Color.swift */,
 				BDDF9EC927B2BD9C006228A1 /* Configurable.swift */,
 				BDDF9ED427B2C36D006228A1 /* CustomImageView.swift */,
+				BDDF9EF427B3F5A7006228A1 /* Util + Identifier.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -256,6 +262,7 @@
 		BDDF9ED827B2DF90006228A1 /* CardDetails */ = {
 			isa = PBXGroup;
 			children = (
+				BDDF9EF727B42708006228A1 /* views */,
 				BDDF9ED927B2DFB8006228A1 /* CardDetailsPresenter.swift */,
 				BDDF9EDA27B2DFB8006228A1 /* CardDetailsRouter.swift */,
 				BDDF9EDB27B2DFB8006228A1 /* CardDetailsModels.swift */,
@@ -264,6 +271,21 @@
 				BDDF9EDE27B2DFB8006228A1 /* CardDetailsVC.swift */,
 			);
 			path = CardDetails;
+			sourceTree = "<group>";
+		};
+		BDDF9EF727B42708006228A1 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				BDDF9EF827B4271D006228A1 /* OtherCardsCollectionViewCell.swift */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		BDDF9EFC27B43CBD006228A1 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Core;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -518,8 +540,10 @@
 				BDDF9EE127B2DFB8006228A1 /* CardDetailsModels.swift in Sources */,
 				BDDF9ECA27B2BD9C006228A1 /* Configurable.swift in Sources */,
 				BDDF9EB727B2AA21006228A1 /* DiscoveriesModels.swift in Sources */,
+				BDDF9EF927B4271D006228A1 /* OtherCardsCollectionViewCell.swift in Sources */,
 				BDDF9ED727B2C58B006228A1 /* Extension + UIViewController.swift in Sources */,
 				BDDF9EB527B2AA21006228A1 /* DiscoveriesPresenter.swift in Sources */,
+				BDDF9EF527B3F5A7006228A1 /* Util + Identifier.swift in Sources */,
 				BDDF9EE427B2DFB8006228A1 /* CardDetailsVC.swift in Sources */,
 				BDDF9E7E27B267C3006228A1 /* AppDelegate.swift in Sources */,
 				BDDF9EB927B2AA21006228A1 /* DiscoveriesProtocol.swift in Sources */,

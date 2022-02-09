@@ -1,0 +1,28 @@
+PODS:
+  - Alamofire (5.5.0)
+  - Cleanse (4.2.6)
+  - Kingfisher (7.1.2)
+  - SnapKit (5.0.1)
+
+DEPENDENCIES:
+  - Alamofire (~> 5.5)
+  - Cleanse
+  - Kingfisher (~> 7.0)
+  - SnapKit (~> 5.0.0)
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - Cleanse
+    - Kingfisher
+    - SnapKit
+
+SPEC CHECKSUMS:
+  Alamofire: 1c4fb5369c3fe93d2857c780d8bbe09f06f97e7c
+  Cleanse: 6bfc62033dcc0e5ba7992f410a5352ddd1283551
+  Kingfisher: 44ed6a8504763f27bab46163adfac83f5deb240c
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+
+PODFILE CHECKSUM: 9c108e2940a9f58d05229167bc612914430b7eff
+
+COCOAPODS: 1.11.2

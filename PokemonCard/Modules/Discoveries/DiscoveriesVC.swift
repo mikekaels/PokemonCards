@@ -22,19 +22,22 @@ class DiscoveriesVC: UIViewController {
         return sc
     }()
     
-    var cardCollectionView: UICollectionView?
+    private var cardCollectionView: UICollectionView?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationBarAppearance()
         view.backgroundColor = Color.background
-        
+        navigationBarAppearance()
         setupNavigationBar()
         collectionViewSetup()
+        
         cardCollectionView?.dataSource = self
         cardCollectionView?.delegate = self
     }
-    
+}
+
+//MARK: - UI SETUP
+extension DiscoveriesVC {
     private func setupNavigationBar() {
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
@@ -44,10 +47,10 @@ class DiscoveriesVC: UIViewController {
         
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         
-        layout.sectionInset = UIEdgeInsets(top: 16, left: 16, bottom: 100, right: 16)
+        layout.sectionInset = UIEdgeInsets(top: 16, left: 16, bottom: 30, right: 16)
         
         layout.itemSize = CGSize(width: UIScreen.main.bounds.width / 2.24,
-                                 height: UIScreen.main.bounds.width / 1.5)
+                                 height: UIScreen.main.bounds.width / 1.65)
         
         layout.minimumLineSpacing = 8
         
@@ -61,7 +64,7 @@ class DiscoveriesVC: UIViewController {
         
         self.view.addSubview(cardCollectionView!)
         
-        cardCollectionView?.register(DiscoveriesCell.self, forCellWithReuseIdentifier: "DiscoveriesCell")
+        cardCollectionView?.register(DiscoveriesCell.self, forCellWithReuseIdentifier: Identifier.discoveriesCell)
         cardCollectionView?.backgroundColor = UIColor.clear
         
         cardCollectionView?.snp.makeConstraints { make in
@@ -73,10 +76,12 @@ class DiscoveriesVC: UIViewController {
     }
 }
 
+//MARK: - PRESENTER
 extension DiscoveriesVC: DiscoveriesPresenterToViewProtocol {
     
 }
 
+//MARK: - UISEARCHBAR DELEGATE
 extension DiscoveriesVC: UISearchResultsUpdating, UISearchControllerDelegate, UISearchBarDelegate {
     func updateSearchResults(for searchController: UISearchController) {
 
@@ -87,13 +92,14 @@ extension DiscoveriesVC: UISearchResultsUpdating, UISearchControllerDelegate, UI
     }
 }
 
+//MARK: - UICOLLECTION DELEGATE
 extension DiscoveriesVC: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 9
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DiscoveriesCell", for: indexPath) as? DiscoveriesCell {
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifier.discoveriesCell, for: indexPath) as? DiscoveriesCell {
             cell.image.loadImageUsingUrlString(urlString: "https://images.pokemontcg.io/smp/SM110.png")
             return cell
         }

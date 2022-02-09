@@ -14,7 +14,6 @@ class DiscoveriesCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.layer.cornerRadius = self.frame.height / 40
         self.layer.masksToBounds = true
         addViews()
     }
@@ -22,7 +21,7 @@ class DiscoveriesCell: UICollectionViewCell {
     func addViews() {
         self.contentView.addSubview(image)
 
-        image.snp.makeConstraints { make in
+        self.image.snp.makeConstraints { make in
             make.top.equalTo(contentView)
             make.left.equalTo(contentView)
             make.right.equalTo(contentView)
