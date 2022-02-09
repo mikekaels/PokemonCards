@@ -1,6 +1,0 @@
-framework module Pods_PokemonCard_PokemonCardUITests {
-  umbrella header "Pods-PokemonCard-PokemonCardUITests-umbrella.h"
-
-  export *
-  module * { export * }
-}
