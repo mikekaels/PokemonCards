@@ -12,13 +12,30 @@
 		5C4034FCF46934C7D9271855 /* Pods_PokemonCardTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2110CCD8CA1B26538F81EE89 /* Pods_PokemonCardTests.framework */; };
 		BDDF9E7E27B267C3006228A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDDF9E7D27B267C3006228A1 /* AppDelegate.swift */; };
 		BDDF9E8027B267C3006228A1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDDF9E7F27B267C3006228A1 /* SceneDelegate.swift */; };
-		BDDF9E8227B267C3006228A1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDDF9E8127B267C3006228A1 /* ViewController.swift */; };
-		BDDF9E8527B267C3006228A1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BDDF9E8327B267C3006228A1 /* Main.storyboard */; };
 		BDDF9E8727B267C5006228A1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BDDF9E8627B267C5006228A1 /* Assets.xcassets */; };
 		BDDF9E8A27B267C5006228A1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BDDF9E8827B267C5006228A1 /* LaunchScreen.storyboard */; };
 		BDDF9E9527B267C6006228A1 /* PokemonCardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDDF9E9427B267C6006228A1 /* PokemonCardTests.swift */; };
 		BDDF9E9F27B267C6006228A1 /* PokemonCardUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDDF9E9E27B267C6006228A1 /* PokemonCardUITests.swift */; };
 		BDDF9EA127B267C6006228A1 /* PokemonCardUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDDF9EA027B267C6006228A1 /* PokemonCardUITestsLaunchTests.swift */; };
+		BDDF9EB527B2AA21006228A1 /* DiscoveriesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDDF9EAF27B2AA21006228A1 /* DiscoveriesPresenter.swift */; };
+		BDDF9EB627B2AA21006228A1 /* DiscoveriesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDDF9EB027B2AA21006228A1 /* DiscoveriesRouter.swift */; };
+		BDDF9EB727B2AA21006228A1 /* DiscoveriesModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDDF9EB127B2AA21006228A1 /* DiscoveriesModels.swift */; };
+		BDDF9EB827B2AA21006228A1 /* DiscoveriesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDDF9EB227B2AA21006228A1 /* DiscoveriesInteractor.swift */; };
+		BDDF9EB927B2AA21006228A1 /* DiscoveriesProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDDF9EB327B2AA21006228A1 /* DiscoveriesProtocol.swift */; };
+		BDDF9EBA27B2AA21006228A1 /* DiscoveriesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDDF9EB427B2AA21006228A1 /* DiscoveriesVC.swift */; };
+		BDDF9EC227B2ACC0006228A1 /* Extension + UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDDF9EC127B2ACC0006228A1 /* Extension + UIColor.swift */; };
+		BDDF9EC527B2AE47006228A1 /* Util + Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDDF9EC427B2AE47006228A1 /* Util + Color.swift */; };
+		BDDF9ECA27B2BD9C006228A1 /* Configurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDDF9EC927B2BD9C006228A1 /* Configurable.swift */; };
+		BDDF9ED327B2C1CC006228A1 /* DiscoveriesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDDF9ED227B2C1CC006228A1 /* DiscoveriesCell.swift */; };
+		BDDF9ED527B2C36D006228A1 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDDF9ED427B2C36D006228A1 /* CustomImageView.swift */; };
+		BDDF9ED727B2C58B006228A1 /* Extension + UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDDF9ED627B2C58B006228A1 /* Extension + UIViewController.swift */; };
+		BDDF9EDF27B2DFB8006228A1 /* CardDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDDF9ED927B2DFB8006228A1 /* CardDetailsPresenter.swift */; };
+		BDDF9EE027B2DFB8006228A1 /* CardDetailsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDDF9EDA27B2DFB8006228A1 /* CardDetailsRouter.swift */; };
+		BDDF9EE127B2DFB8006228A1 /* CardDetailsModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDDF9EDB27B2DFB8006228A1 /* CardDetailsModels.swift */; };
+		BDDF9EE227B2DFB8006228A1 /* CardDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDDF9EDC27B2DFB8006228A1 /* CardDetailsInteractor.swift */; };
+		BDDF9EE327B2DFB8006228A1 /* CardDetailsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDDF9EDD27B2DFB8006228A1 /* CardDetailsProtocol.swift */; };
+		BDDF9EE427B2DFB8006228A1 /* CardDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDDF9EDE27B2DFB8006228A1 /* CardDetailsVC.swift */; };
+		BDDF9EE627B2E542006228A1 /* Extension + UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDDF9EE527B2E542006228A1 /* Extension + UIFont.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,8 +66,6 @@
 		BDDF9E7A27B267C3006228A1 /* PokemonCard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokemonCard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDDF9E7D27B267C3006228A1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BDDF9E7F27B267C3006228A1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		BDDF9E8127B267C3006228A1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		BDDF9E8427B267C3006228A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BDDF9E8627B267C5006228A1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BDDF9E8927B267C5006228A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BDDF9E8B27B267C5006228A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -59,6 +74,25 @@
 		BDDF9E9A27B267C6006228A1 /* PokemonCardUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PokemonCardUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDDF9E9E27B267C6006228A1 /* PokemonCardUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonCardUITests.swift; sourceTree = "<group>"; };
 		BDDF9EA027B267C6006228A1 /* PokemonCardUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonCardUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		BDDF9EAF27B2AA21006228A1 /* DiscoveriesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveriesPresenter.swift; sourceTree = "<group>"; };
+		BDDF9EB027B2AA21006228A1 /* DiscoveriesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveriesRouter.swift; sourceTree = "<group>"; };
+		BDDF9EB127B2AA21006228A1 /* DiscoveriesModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveriesModels.swift; sourceTree = "<group>"; };
+		BDDF9EB227B2AA21006228A1 /* DiscoveriesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveriesInteractor.swift; sourceTree = "<group>"; };
+		BDDF9EB327B2AA21006228A1 /* DiscoveriesProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveriesProtocol.swift; sourceTree = "<group>"; };
+		BDDF9EB427B2AA21006228A1 /* DiscoveriesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveriesVC.swift; sourceTree = "<group>"; };
+		BDDF9EC127B2ACC0006228A1 /* Extension + UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIColor.swift"; sourceTree = "<group>"; };
+		BDDF9EC427B2AE47006228A1 /* Util + Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Util + Color.swift"; sourceTree = "<group>"; };
+		BDDF9EC927B2BD9C006228A1 /* Configurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configurable.swift; sourceTree = "<group>"; };
+		BDDF9ED227B2C1CC006228A1 /* DiscoveriesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveriesCell.swift; sourceTree = "<group>"; };
+		BDDF9ED427B2C36D006228A1 /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
+		BDDF9ED627B2C58B006228A1 /* Extension + UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIViewController.swift"; sourceTree = "<group>"; };
+		BDDF9ED927B2DFB8006228A1 /* CardDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailsPresenter.swift; sourceTree = "<group>"; };
+		BDDF9EDA27B2DFB8006228A1 /* CardDetailsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailsRouter.swift; sourceTree = "<group>"; };
+		BDDF9EDB27B2DFB8006228A1 /* CardDetailsModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailsModels.swift; sourceTree = "<group>"; };
+		BDDF9EDC27B2DFB8006228A1 /* CardDetailsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailsInteractor.swift; sourceTree = "<group>"; };
+		BDDF9EDD27B2DFB8006228A1 /* CardDetailsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailsProtocol.swift; sourceTree = "<group>"; };
+		BDDF9EDE27B2DFB8006228A1 /* CardDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailsVC.swift; sourceTree = "<group>"; };
+		BDDF9EE527B2E542006228A1 /* Extension + UIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIFont.swift"; sourceTree = "<group>"; };
 		C51958666F0B372A7A00474D /* Pods-PokemonCard-PokemonCardUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PokemonCard-PokemonCardUITests.release.xcconfig"; path = "Target Support Files/Pods-PokemonCard-PokemonCardUITests/Pods-PokemonCard-PokemonCardUITests.release.xcconfig"; sourceTree = "<group>"; };
 		F33C2CDAA26D1B4C66F21AB2 /* Pods-PokemonCardTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PokemonCardTests.debug.xcconfig"; path = "Target Support Files/Pods-PokemonCardTests/Pods-PokemonCardTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -139,11 +173,11 @@
 		BDDF9E7C27B267C3006228A1 /* PokemonCard */ = {
 			isa = PBXGroup;
 			children = (
+				BDDF9EBE27B2AC94006228A1 /* Extensions */,
+				BDDF9EC327B2AE38006228A1 /* Utils */,
 				BDDF9EAD27B26ABE006228A1 /* Modules */,
 				BDDF9E7D27B267C3006228A1 /* AppDelegate.swift */,
 				BDDF9E7F27B267C3006228A1 /* SceneDelegate.swift */,
-				BDDF9E8127B267C3006228A1 /* ViewController.swift */,
-				BDDF9E8327B267C3006228A1 /* Main.storyboard */,
 				BDDF9E8627B267C5006228A1 /* Assets.xcassets */,
 				BDDF9E8827B267C5006228A1 /* LaunchScreen.storyboard */,
 				BDDF9E8B27B267C5006228A1 /* Info.plist */,
@@ -171,8 +205,65 @@
 		BDDF9EAD27B26ABE006228A1 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				BDDF9ED827B2DF90006228A1 /* CardDetails */,
+				BDDF9EAE27B2A9E7006228A1 /* Discoveries */,
 			);
 			path = Modules;
+			sourceTree = "<group>";
+		};
+		BDDF9EAE27B2A9E7006228A1 /* Discoveries */ = {
+			isa = PBXGroup;
+			children = (
+				BDDF9ECB27B2C14A006228A1 /* views */,
+				BDDF9EAF27B2AA21006228A1 /* DiscoveriesPresenter.swift */,
+				BDDF9EB027B2AA21006228A1 /* DiscoveriesRouter.swift */,
+				BDDF9EB127B2AA21006228A1 /* DiscoveriesModels.swift */,
+				BDDF9EB227B2AA21006228A1 /* DiscoveriesInteractor.swift */,
+				BDDF9EB327B2AA21006228A1 /* DiscoveriesProtocol.swift */,
+				BDDF9EB427B2AA21006228A1 /* DiscoveriesVC.swift */,
+			);
+			path = Discoveries;
+			sourceTree = "<group>";
+		};
+		BDDF9EBE27B2AC94006228A1 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				BDDF9EC127B2ACC0006228A1 /* Extension + UIColor.swift */,
+				BDDF9ED627B2C58B006228A1 /* Extension + UIViewController.swift */,
+				BDDF9EE527B2E542006228A1 /* Extension + UIFont.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		BDDF9EC327B2AE38006228A1 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				BDDF9EC427B2AE47006228A1 /* Util + Color.swift */,
+				BDDF9EC927B2BD9C006228A1 /* Configurable.swift */,
+				BDDF9ED427B2C36D006228A1 /* CustomImageView.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		BDDF9ECB27B2C14A006228A1 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				BDDF9ED227B2C1CC006228A1 /* DiscoveriesCell.swift */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		BDDF9ED827B2DF90006228A1 /* CardDetails */ = {
+			isa = PBXGroup;
+			children = (
+				BDDF9ED927B2DFB8006228A1 /* CardDetailsPresenter.swift */,
+				BDDF9EDA27B2DFB8006228A1 /* CardDetailsRouter.swift */,
+				BDDF9EDB27B2DFB8006228A1 /* CardDetailsModels.swift */,
+				BDDF9EDC27B2DFB8006228A1 /* CardDetailsInteractor.swift */,
+				BDDF9EDD27B2DFB8006228A1 /* CardDetailsProtocol.swift */,
+				BDDF9EDE27B2DFB8006228A1 /* CardDetailsVC.swift */,
+			);
+			path = CardDetails;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -286,7 +377,6 @@
 			files = (
 				BDDF9E8A27B267C5006228A1 /* LaunchScreen.storyboard in Resources */,
 				BDDF9E8727B267C5006228A1 /* Assets.xcassets in Resources */,
-				BDDF9E8527B267C3006228A1 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -414,9 +504,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BDDF9E8227B267C3006228A1 /* ViewController.swift in Sources */,
+				BDDF9ED327B2C1CC006228A1 /* DiscoveriesCell.swift in Sources */,
+				BDDF9EB627B2AA21006228A1 /* DiscoveriesRouter.swift in Sources */,
+				BDDF9EC527B2AE47006228A1 /* Util + Color.swift in Sources */,
+				BDDF9EE027B2DFB8006228A1 /* CardDetailsRouter.swift in Sources */,
+				BDDF9EBA27B2AA21006228A1 /* DiscoveriesVC.swift in Sources */,
+				BDDF9EC227B2ACC0006228A1 /* Extension + UIColor.swift in Sources */,
+				BDDF9EE627B2E542006228A1 /* Extension + UIFont.swift in Sources */,
+				BDDF9EE327B2DFB8006228A1 /* CardDetailsProtocol.swift in Sources */,
+				BDDF9EDF27B2DFB8006228A1 /* CardDetailsPresenter.swift in Sources */,
+				BDDF9EE227B2DFB8006228A1 /* CardDetailsInteractor.swift in Sources */,
+				BDDF9EB827B2AA21006228A1 /* DiscoveriesInteractor.swift in Sources */,
+				BDDF9EE127B2DFB8006228A1 /* CardDetailsModels.swift in Sources */,
+				BDDF9ECA27B2BD9C006228A1 /* Configurable.swift in Sources */,
+				BDDF9EB727B2AA21006228A1 /* DiscoveriesModels.swift in Sources */,
+				BDDF9ED727B2C58B006228A1 /* Extension + UIViewController.swift in Sources */,
+				BDDF9EB527B2AA21006228A1 /* DiscoveriesPresenter.swift in Sources */,
+				BDDF9EE427B2DFB8006228A1 /* CardDetailsVC.swift in Sources */,
 				BDDF9E7E27B267C3006228A1 /* AppDelegate.swift in Sources */,
+				BDDF9EB927B2AA21006228A1 /* DiscoveriesProtocol.swift in Sources */,
 				BDDF9E8027B267C3006228A1 /* SceneDelegate.swift in Sources */,
+				BDDF9ED527B2C36D006228A1 /* CustomImageView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -453,14 +561,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		BDDF9E8327B267C3006228A1 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				BDDF9E8427B267C3006228A1 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		BDDF9E8827B267C5006228A1 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -601,7 +701,6 @@
 				INFOPLIST_FILE = PokemonCard/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -630,7 +729,6 @@
 				INFOPLIST_FILE = PokemonCard/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
