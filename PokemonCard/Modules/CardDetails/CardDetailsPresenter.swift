@@ -10,8 +10,19 @@ class CardDetailsPresenter: CardDetailsViewToPresenterProtocol {
     weak var view: CardDetailsPresenterToViewProtocol?
     var router: CardDetailsPresenterToRouterProtocol?
     var interactor: CardDetailsPresenterToInteractorProtocol?
+    
+    func fetchCardDetails(id: String) {
+        interactor?.fetchCardDetails(id: id)
+    }
 }
 
 extension CardDetailsPresenter: CardDetailsInteractorToPresenterProtocol {
-
+    func didFetchCardDetails(result: Result<CardDetails, CustomError>) {
+        switch result {
+        case .success(let card):
+            self.view?.didFetchCardDetails(card: card.data)
+        case .failure(let error):
+            self.view?.didErrorFetchCardDetails(error: error)
+        }
+    }
 }

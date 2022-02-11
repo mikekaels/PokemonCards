@@ -14,6 +14,7 @@ class OtherCardsCollectionViewCell: UICollectionViewCell {
             v.contentMode = .scaleAspectFill
             v.clipsToBounds = true
             let urls = URL(string: "https://images.pokemontcg.io/smp/SM110.png")
+            v.kf.indicatorType = .activity
             v.kf.setImage(with: urls)
         }
     

@@ -34,8 +34,9 @@ public class DiscoveriesRouter: DiscoveriesPresenterToRouterProtocol{
         return view
     }
     
-    func goToCardDetail(from: DiscoveriesVC) {
+    func goToCardDetail(id: String, from: DiscoveriesVC) {
         let vc = CardDetailsRouter.shared.createModule()
+        vc.id = id
         from.navigationController?.pushViewController(vc, animated: true)
     }
 }

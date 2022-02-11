@@ -9,3 +9,11 @@
 class CardDetailsInteractor: CardDetailsPresenterToInteractorProtocol {
     weak var presenter: CardDetailsInteractorToPresenterProtocol?
 }
+
+extension CardDetailsInteractor {
+    func fetchCardDetails(id: String) {
+        ServiceManager.shared.getCardDetails(id: id) { result in
+            self.presenter?.didFetchCardDetails(result: result)
+        }
+    }
+}

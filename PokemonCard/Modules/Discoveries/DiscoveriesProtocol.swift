@@ -14,23 +14,27 @@ protocol DiscoveriesViewToPresenterProtocol: AnyObject {
     var interactor: DiscoveriesPresenterToInteractorProtocol? { get set }
     var router: DiscoveriesPresenterToRouterProtocol? { get set }
     
-    func goToCardDetail(from: DiscoveriesVC)
+    func goToCardDetail(id: String, from: DiscoveriesVC)
+    func fetchCards(page: Int, pageSize: Int)
+    func findCards(name: String, page: Int, pageSize: Int)
 }
 
 protocol DiscoveriesPresenterToRouterProtocol: AnyObject {
     func createModule() -> DiscoveriesVC
-    func goToCardDetail(from: DiscoveriesVC)
+    func goToCardDetail(id: String, from: DiscoveriesVC)
 }
 
 protocol DiscoveriesPresenterToViewProtocol: AnyObject {
-
+    func didFetchCards(cards: Cards)
+    func didErrorFetchCards(error: CustomError)
 }
 
 protocol DiscoveriesInteractorToPresenterProtocol: AnyObject {
-
+    func didFetchCards(result: Result<Cards, CustomError>)
 }
 
 protocol DiscoveriesPresenterToInteractorProtocol: AnyObject {
     var presenter: DiscoveriesInteractorToPresenterProtocol? { get set }
-
+    func fetchCards(page: Int, pageSize: Int)
+    func findCards(name: String, page: Int, pageSize: Int)
 }

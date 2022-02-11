@@ -7,10 +7,14 @@
 
 import UIKit
 import Kingfisher
+import SkeletonView
 
 class CardDetailsVC: UIViewController {
     var presentor: CardDetailsViewToPresenterProtocol?
     public var delegate: CardDetailsDelegate?
+    
+    var id : String?
+    var imageString: String?
     
     private let spacing: Int = 30
     
@@ -24,18 +28,21 @@ class CardDetailsVC: UIViewController {
     
     private let imageView: UIImageView = UIImageView()
         .configure { v in
-            let urls = URL(string: "https://images.pokemontcg.io/smp/SM110.png")
-            v.kf.setImage(with: urls)
+            v.isSkeletonable = true
+            v.isUserInteractionEnabled = true
         }
     
     private let detailsContainer: UIView = UIView()
         .configure { v in
+            v.isSkeletonable = true
         }
     private let descContainer: UIView = UIView()
         .configure { v in
+            v.isSkeletonable = true
         }
     private let otherContainer: UIView = UIView()
         .configure { v in
+            v.isSkeletonable = true
         }
     
     private let lbl0CardName: UILabel = UILabel()
@@ -84,112 +91,90 @@ class CardDetailsVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.showAnimatedSkeleton()
         self.view.backgroundColor = Color.background
         self.setupView()
+        self.fetchCard(id: self.id ?? "xy1-1")
+        
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(zoomIn))
+        self.imageView.isUserInteractionEnabled = true
+        self.imageView.addGestureRecognizer(gesture)
+    }
+    
+    func fetchCard(id: String) {
+        presentor?.fetchCardDetails(id: id)
+    }
+    
+    let backgroundView: UIView = UIView()
+        .configure { v in
+            v.backgroundColor = .black
+            v.layer.opacity = 0.9
+        }
+    
+    let preview = UIView()
+    let previewImage = UIImageView()
+    
+    @objc func zoomIn() {
+        if let startingFrame = imageView.superview?.convert(imageView.frame, to: nil) {
+            
+            let height = (self.view.frame.width / startingFrame.width) * startingFrame.height
+            
+            preview.frame = CGRect(x: 0, y: 0, width: self.view.frame.width / 1.3, height: height / 1.3)
+            preview.center = self.view.center
+            
+            self.imageView.isHidden = true
+            
+            backgroundView.frame = self.view.frame
+            self.navigationController?.view.addSubview(backgroundView)
+            
+            self.navigationController?.view.addSubview(preview)
+            
+            preview.addSubview(previewImage)
+            
+            previewImage.snp.makeConstraints { make in
+                make.top.right.bottom.left.equalTo(preview)
+            }
+            
+            previewImage.kf.setImage(with: URL(string: self.imageString!))
+            
+            let gesture = UITapGestureRecognizer(target: self, action: #selector(zoomOut))
+            self.previewImage.isUserInteractionEnabled = true
+            previewImage.addGestureRecognizer(gesture)
+        }
+    }
+    
+    @objc func zoomOut() {
+        preview.removeFromSuperview()
+        preview.removeFromSuperview()
+        backgroundView.removeFromSuperview()
+        self.imageView.isHidden = false
     }
 }
 
 
 
 extension CardDetailsVC: CardDetailsPresenterToViewProtocol {
-    
-}
-
-//MARK: - SETUP VIEW
-extension CardDetailsVC {
-    private func setupView() {
-        view.addSubview(scrollView)
-        scrollView.snp.makeConstraints { make in
-            make.top.equalTo(view)
-            make.right.equalTo(view)
-            make.bottom.equalTo(view)
-            make.left.equalTo(view)
+    func didFetchCardDetails(card: Card) {
+        print("👉 Card: ", card)
+        DispatchQueue.main.async { [weak self] in
+            self?.imageView.kf.indicatorType = .activity
+            self?.imageString = card.images!.small
+            self?.imageView.kf.setImage(with: URL(string: card.images!.small))
+            self?.lbl0CardName.text = card.name
+            let types = card.types.joined(separator: ", ")
+            self?.lbl1Type.text = "\(types) (HP \(card.hp))"
+            let subtype = card.subtypes.joined(separator: ", ")
+            self?.lbl1Level.text = "\(card.supertype) \(subtype)"
+            self?.lbl1Desc.text = card.flavorText
+            self?.lbl0Flavor.text = card.flavorText != nil ? "Flavor" : ""
         }
-        
-        scrollView.addSubview(contentView)
-        contentView.snp.makeConstraints { make in
-            make.top.equalTo(scrollView)
-            make.centerX.equalTo(scrollView)
-            make.width.equalTo(scrollView).inset(16)
-            make.bottom.equalTo(scrollView)
-            make.height.equalTo(scrollView)
-        }
-        
-        contentView.addSubview(imageView)
-        imageView.snp.makeConstraints { make in
-            make.width.equalTo(200)
-            make.height.equalTo(280)
-            make.top.equalTo(contentView).offset(20)
-            make.centerX.equalTo(contentView)
-        }
-        
-        contentView.addSubview(detailsContainer.configure(completion: { v in
-            v.addSubview(lbl0CardName)
-            lbl0CardName.snp.makeConstraints { make in
-                make.top.equalTo(v)
-                make.right.equalTo(v)
-                make.left.equalTo(v)
-            }
-            
-            v.addSubview(lbl1Level)
-            lbl1Level.snp.makeConstraints { make in
-                make.top.equalTo(lbl0CardName.snp_bottomMargin).offset(10)
-                make.right.equalTo(v)
-                make.left.equalTo(v)
-            }
-        }))
-        
-        detailsContainer.snp.makeConstraints { make in
-            make.top.equalTo(imageView.snp_bottomMargin).offset(40)
-            make.right.equalTo(contentView)
-            make.left.equalTo(contentView)
-        }
-        
-        contentView.addSubview(descContainer.configure(completion: { v in
-            v.addSubview(lbl0Flavor)
-            lbl0Flavor.snp.makeConstraints { make in
-                make.top.equalTo(v)
-                make.right.equalTo(v)
-                make.left.equalTo(v)
-            }
-            
-            v.addSubview(lbl1Desc)
-            lbl1Desc.snp.makeConstraints { make in
-                make.top.equalTo(lbl0Flavor.snp_bottomMargin).offset(10)
-                make.right.equalTo(v)
-                make.left.equalTo(v)
-            }
-        }))
-        
-        descContainer.snp.makeConstraints { make in
-            make.top.equalTo(lbl1Level.snp_bottomMargin).offset(spacing)
-            make.right.equalTo(contentView)
-            make.left.equalTo(contentView)
-        }
-        
-        contentView.addSubview(otherContainer.configure(completion: { v in
-            v.addSubview(lbl0OtherCards)
-            lbl0OtherCards.snp.makeConstraints { make in
-                make.top.equalTo(v)
-                make.right.equalTo(v)
-                make.left.equalTo(v)
-            }
-        }))
-        otherContainer.snp.makeConstraints { make in
-            make.top.equalTo(lbl1Desc.snp_bottomMargin).offset(spacing)
-            make.right.equalTo(contentView)
-            make.left.equalTo(contentView)
-            make.height.equalTo(300)
-        }
-
-        otherCardsData.append(OtherCardsData(image: "https://images.pokemontcg.io/smp/SM110.png"))
-        otherCardsData.append(OtherCardsData(image: "https://images.pokemontcg.io/smp/SM110.png"))
-        otherCardsData.append(OtherCardsData(image: "https://images.pokemontcg.io/smp/SM110.png"))
-        otherCardsData.append(OtherCardsData(image: "https://images.pokemontcg.io/smp/SM110.png"))
-        otherCardsData.append(OtherCardsData(image: "https://images.pokemontcg.io/smp/SM110.png"))
-        otherCardsData.append(OtherCardsData(image: "https://images.pokemontcg.io/smp/SM110.png"))
-        collectionViewSetup()
     }
+    
+    func didErrorFetchCardDetails(error: CustomError) {
+        print("🔥 Error: ",error)
+    }
+    
+    
 }
 
 
@@ -252,5 +237,109 @@ extension CardDetailsVC {
             make.bottom.equalTo(otherContainer)
         }
         otherCardsCollectionView!.reloadData()
+    }
+}
+
+//MARK: - SETUP VIEW
+extension CardDetailsVC {
+    private func setupView() {
+        view.addSubview(scrollView)
+        scrollView.snp.makeConstraints { make in
+            make.top.equalTo(view)
+            make.right.equalTo(view)
+            make.bottom.equalTo(view)
+            make.left.equalTo(view)
+        }
+        
+        scrollView.addSubview(contentView)
+        contentView.snp.makeConstraints { make in
+            make.top.equalTo(scrollView)
+            make.centerX.equalTo(scrollView)
+            make.width.equalTo(scrollView).inset(16)
+            make.bottom.equalTo(scrollView)
+            make.height.equalTo(scrollView)
+        }
+        
+        contentView.addSubview(imageView)
+        imageView.snp.makeConstraints { make in
+            make.width.equalTo(200)
+            make.height.equalTo(280)
+            make.top.equalTo(contentView).offset(20)
+            make.centerX.equalTo(contentView)
+        }
+        
+        contentView.addSubview(detailsContainer.configure(completion: { v in
+            v.addSubview(lbl0CardName)
+            lbl0CardName.snp.makeConstraints { make in
+                make.top.equalTo(v)
+                make.right.equalTo(v)
+                make.left.equalTo(v)
+            }
+            
+            v.addSubview(lbl1Type)
+            lbl1Type.snp.makeConstraints { make in
+                make.top.equalTo(lbl0CardName.snp_bottomMargin).offset(10)
+                make.right.equalTo(v)
+                make.left.equalTo(v)
+            }
+            
+            v.addSubview(lbl1Level)
+            lbl1Level.snp.makeConstraints { make in
+                make.top.equalTo(lbl1Type.snp_bottomMargin).offset(10)
+                make.right.equalTo(v)
+                make.left.equalTo(v)
+            }
+        }))
+        
+        detailsContainer.snp.makeConstraints { make in
+            make.top.equalTo(imageView.snp_bottomMargin).offset(18)
+            make.right.equalTo(contentView)
+            make.left.equalTo(contentView)
+        }
+        
+        contentView.addSubview(descContainer.configure(completion: { v in
+            v.addSubview(lbl0Flavor)
+            lbl0Flavor.snp.makeConstraints { make in
+                make.top.equalTo(v)
+                make.right.equalTo(v)
+                make.left.equalTo(v)
+            }
+            
+            v.addSubview(lbl1Desc)
+            lbl1Desc.snp.makeConstraints { make in
+                make.top.equalTo(lbl0Flavor.snp_bottomMargin).offset(10)
+                make.right.equalTo(v)
+                make.left.equalTo(v)
+            }
+        }))
+        
+        descContainer.snp.makeConstraints { make in
+            make.top.equalTo(lbl1Level.snp_bottomMargin).offset(spacing)
+            make.right.equalTo(contentView)
+            make.left.equalTo(contentView)
+        }
+        
+        contentView.addSubview(otherContainer.configure(completion: { v in
+            v.addSubview(lbl0OtherCards)
+            lbl0OtherCards.snp.makeConstraints { make in
+                make.top.equalTo(v)
+                make.right.equalTo(v)
+                make.left.equalTo(v)
+            }
+        }))
+        otherContainer.snp.makeConstraints { make in
+            make.top.equalTo(lbl1Desc.snp_bottomMargin).offset(spacing)
+            make.right.equalTo(contentView)
+            make.left.equalTo(contentView)
+            make.height.equalTo(300)
+        }
+
+        otherCardsData.append(OtherCardsData(image: "https://images.pokemontcg.io/smp/SM110.png"))
+        otherCardsData.append(OtherCardsData(image: "https://images.pokemontcg.io/smp/SM110.png"))
+        otherCardsData.append(OtherCardsData(image: "https://images.pokemontcg.io/smp/SM110.png"))
+        otherCardsData.append(OtherCardsData(image: "https://images.pokemontcg.io/smp/SM110.png"))
+        otherCardsData.append(OtherCardsData(image: "https://images.pokemontcg.io/smp/SM110.png"))
+        otherCardsData.append(OtherCardsData(image: "https://images.pokemontcg.io/smp/SM110.png"))
+        collectionViewSetup()
     }
 }

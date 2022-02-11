@@ -11,11 +11,28 @@ class DiscoveriesPresenter: DiscoveriesViewToPresenterProtocol {
     var router: DiscoveriesPresenterToRouterProtocol?
     var interactor: DiscoveriesPresenterToInteractorProtocol?
     
-    func goToCardDetail(from: DiscoveriesVC) {
-        router?.goToCardDetail(from: from)
+    func goToCardDetail(id: String, from: DiscoveriesVC) {
+        router?.goToCardDetail(id: id, from: from)
+    }
+    
+    func fetchCards(page: Int, pageSize: Int) {
+        interactor?.fetchCards(page: page, pageSize: pageSize)
+    }
+    
+    func findCards(name: String, page: Int, pageSize: Int) {
+        interactor?.findCards(name: name, page: page, pageSize: pageSize)
     }
 }
 
 extension DiscoveriesPresenter: DiscoveriesInteractorToPresenterProtocol {
-
+    func didFetchCards(result: Result<Cards, CustomError>) {
+        switch result {
+        case .success(let cards):
+            self.view?.didFetchCards(cards:cards)
+        case .failure(let error):
+            self.view?.didErrorFetchCards(error: error)
+        }
+    }
+    
+    
 }

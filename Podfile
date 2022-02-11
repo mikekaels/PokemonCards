@@ -7,9 +7,9 @@ target 'PokemonCard' do
 
   # Pods for PokemonCard
   pod 'Alamofire', '~> 5.5'
-  pod 'Cleanse'
   pod 'SnapKit', '~> 5.0.0'
   pod 'Kingfisher', '~> 7.0'
+  pod 'SkeletonView'
 
   target 'PokemonCardTests' do
     inherit! :search_paths
