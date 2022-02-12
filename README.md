@@ -3,7 +3,7 @@
 ![This is an image](https://i.ibb.co/rctGR3H/Group-1.png)
 
 ## Features
-- List of pokemon card
+- List of pokemon card with infinite scrolling
 - Find specific card
 - Detail of card
 
