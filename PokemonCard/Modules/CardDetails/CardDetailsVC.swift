@@ -34,6 +34,9 @@ class CardDetailsVC: UIViewController {
     private var otherCardsData = [OtherCardsData]()
     private var otherCardsCollectionView: UICollectionView?
     private let scrollView: UIScrollView = UIScrollView()
+        .configure { v in
+            v.showsVerticalScrollIndicator = false
+        }
     private let contentView: UIView = UIView()
     
     private let imageView: UIImageView = UIImageView()

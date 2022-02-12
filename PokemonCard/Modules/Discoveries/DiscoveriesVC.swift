@@ -87,7 +87,6 @@ class DiscoveriesVC: UIViewController {
 //MARK: - PRESENTER DELEGATE
 extension DiscoveriesVC: DiscoveriesPresenterToViewProtocol {
     func didFetchCards(cards: Cards) {
-        print("CARDS: ",cards.data.count)
         if cards.data.count != 0 {
             self.noConnectionView.removeFromSuperview()
             self.cards.append(contentsOf: cards.data)
@@ -102,7 +101,6 @@ extension DiscoveriesVC: DiscoveriesPresenterToViewProtocol {
                 })
             }
         } else if self.cards.count == 0 && self.searchText != nil && cards.data.count == 0 {
-//            DispatchQueue.main.async { [weak self] in
                 self.noConnectionView.label.text = "No such card with the name '\(String(describing: self.searchText!))', \n try another name"
                 self.view.addSubview(self.noConnectionView)
                 self.noConnectionView.snp.makeConstraints { make in
@@ -111,7 +109,6 @@ extension DiscoveriesVC: DiscoveriesPresenterToViewProtocol {
                     make.left.equalTo(self.view)
                     make.bottom.equalTo(self.view)
                 }
-//            }
         }
     }
     
