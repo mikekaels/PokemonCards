@@ -134,7 +134,8 @@ extension DiscoveriesVC: UISearchResultsUpdating, UISearchControllerDelegate, UI
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        if searchText != "" {
+        print("👉 ", self.cards.count )
+        if searchText != nil && self.cards.count == 0 {
             self.searchText = nil
             scrollToTop()
             presentor?.fetchCards(page: page, pageSize: pageSize)

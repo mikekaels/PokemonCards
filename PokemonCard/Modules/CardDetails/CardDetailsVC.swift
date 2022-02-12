@@ -293,6 +293,11 @@ extension CardDetailsVC {
             make.height.equalTo(scrollView)
         }
         
+        imageView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
+        imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
+        imageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+        imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
+        
         contentView.addSubview(imageView)
         imageView.snp.makeConstraints { make in
             make.width.equalTo(200)

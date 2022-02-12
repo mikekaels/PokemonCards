@@ -56,7 +56,7 @@ class ServiceManager {
                             let result = try JSONDecoder().decode(Cards.self, from: data)
                             completion(.success(result))
                         } catch {
-                            completion(.failure(error as! CustomError))
+                            completion(.failure(.unexpected))
                         }
                     }
                 
