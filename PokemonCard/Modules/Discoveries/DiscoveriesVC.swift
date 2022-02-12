@@ -20,6 +20,7 @@ class DiscoveriesVC: UIViewController {
         sc.obscuresBackgroundDuringPresentation = false
         sc.searchBar.placeholder = "Find Pokemon"
         sc.searchBar.delegate = self
+        sc.searchBar.searchTextField.textColor = UIColor.white
         return sc
     }()
     
@@ -86,6 +87,7 @@ class DiscoveriesVC: UIViewController {
 //MARK: - PRESENTER DELEGATE
 extension DiscoveriesVC: DiscoveriesPresenterToViewProtocol {
     func didFetchCards(cards: Cards) {
+        print("CARDS: ",cards.data.count)
         if cards.data.count != 0 {
             self.noConnectionView.removeFromSuperview()
             self.cards.append(contentsOf: cards.data)
@@ -99,17 +101,17 @@ extension DiscoveriesVC: DiscoveriesPresenterToViewProtocol {
                     self?.cardCollectionView?.hideSkeleton()
                 })
             }
-        } else {
-            DispatchQueue.main.async { [weak self] in
-                self?.noConnectionView.label.text = "No such card with the name '\(String(describing: self!.searchText!))', \n try another name"
-                self?.view.addSubview(self!.noConnectionView)
-                self?.noConnectionView.snp.makeConstraints { make in
-                    make.top.equalTo(self!.view)
-                    make.right.equalTo(self!.view)
-                    make.left.equalTo(self!.view)
-                    make.bottom.equalTo(self!.view)
-            }
-            }
+        } else if self.cards.count == 0 && self.searchText != nil && cards.data.count == 0 {
+//            DispatchQueue.main.async { [weak self] in
+                self.noConnectionView.label.text = "No such card with the name '\(String(describing: self.searchText!))', \n try another name"
+                self.view.addSubview(self.noConnectionView)
+                self.noConnectionView.snp.makeConstraints { make in
+                    make.top.equalTo(self.view)
+                    make.right.equalTo(self.view)
+                    make.left.equalTo(self.view)
+                    make.bottom.equalTo(self.view)
+                }
+//            }
         }
     }
     
@@ -129,13 +131,13 @@ extension DiscoveriesVC: UISearchResultsUpdating, UISearchControllerDelegate, UI
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        self.searchText = searchBar.text
         scrollToTop()
+        self.searchText = searchBar.text
         presentor?.findCards(name: searchBar.text!, page: page, pageSize: pageSize)
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        if searchText != nil {
+        if searchText != "" {
             self.searchText = nil
             scrollToTop()
             presentor?.fetchCards(page: page, pageSize: pageSize)

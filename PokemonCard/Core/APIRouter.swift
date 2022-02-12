@@ -12,6 +12,7 @@ enum APIRouter {
     case fetchCards(page: Int, pageSize: Int)
     case findCard(name: String, page: Int, pageSize: Int)
     case getCardDetails(id: String)
+    case getOtherCards(id: String, type: String, page: Int, pageSize: Int)
 }
 
 extension APIRouter: HttpRouter {
@@ -25,7 +26,7 @@ extension APIRouter: HttpRouter {
     
     var method: HTTPMethod {
         switch self {
-        case .fetchCards, .findCard, .getCardDetails: return .get
+        case .fetchCards, .findCard, .getCardDetails, .getOtherCards: return .get
         }
     }
     
@@ -61,6 +62,12 @@ extension APIRouter: HttpRouter {
                 "page": page,
                 "pageSize": pageSize,
                 "q": "name:\(name)",
+            ]
+        case .getOtherCards(let id, let type, let page, let pageSize):
+            return [
+                "page": page,
+                "pageSize": pageSize,
+                "q": "types:\(type) -id:\(id)"
             ]
         default: return [:]
         }

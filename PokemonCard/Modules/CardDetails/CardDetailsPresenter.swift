@@ -14,6 +14,14 @@ class CardDetailsPresenter: CardDetailsViewToPresenterProtocol {
     func fetchCardDetails(id: String) {
         interactor?.fetchCardDetails(id: id)
     }
+    
+    func getOtherCards(id: String, type: String, page: Int, pageSize: Int) {
+        interactor?.getOtherCards(id: id, type: type, page: page, pageSize: pageSize)
+    }
+    
+    func goToNextCard(id: String, from: CardDetailsVC) {
+        router?.goToNextCard(id: id, from: from)
+    }
 }
 
 extension CardDetailsPresenter: CardDetailsInteractorToPresenterProtocol {
@@ -23,6 +31,15 @@ extension CardDetailsPresenter: CardDetailsInteractorToPresenterProtocol {
             self.view?.didFetchCardDetails(card: card.data)
         case .failure(let error):
             self.view?.didErrorFetchCardDetails(error: error)
+        }
+    }
+    
+    func didGetOtherCards(result: Result<Cards, CustomError>) {
+        switch result {
+        case .success(let cards):
+            self.view?.didGetOtherCards(cards:cards)
+        case .failure(let error):
+            self.view?.didErrorGetOtherCards(error: error)
         }
     }
 }

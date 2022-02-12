@@ -41,3 +41,32 @@ class OtherCardsCollectionViewCell: UICollectionViewCell {
         setupUI()
     }
 }
+
+class SpinnerCollectionCell: UICollectionViewCell {
+    var imageView = UIImageView()
+        .configure { v in
+            v.contentMode = .scaleAspectFill
+            v.clipsToBounds = true
+            let urls = URL(string: "")
+            v.kf.indicatorType = .activity
+            v.kf.setImage(with: urls)
+        }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupUI()
+    }
+    
+    func setupUI() {
+        contentView.addSubview(imageView)
+        imageView.snp.makeConstraints { make in
+            make.center.equalTo(contentView)
+            make.width.height.equalTo(contentView).inset(5)
+        }
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setupUI()
+    }
+}

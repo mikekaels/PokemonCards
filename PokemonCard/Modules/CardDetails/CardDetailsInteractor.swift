@@ -16,4 +16,10 @@ extension CardDetailsInteractor {
             self.presenter?.didFetchCardDetails(result: result)
         }
     }
+    
+    func getOtherCards(id: String, type: String, page: Int, pageSize: Int) {
+        ServiceManager.shared.getOtherCards(id: id, type: type, page: page, pageSize: pageSize) { result in
+            self.presenter?.didGetOtherCards(result: result)
+        }
+    }
 }

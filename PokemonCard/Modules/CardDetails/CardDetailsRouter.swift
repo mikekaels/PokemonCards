@@ -33,4 +33,10 @@ public class CardDetailsRouter: CardDetailsPresenterToRouterProtocol{
         
         return view
     }
+    
+    func goToNextCard(id: String, from: CardDetailsVC) {
+        let vc = createModule()
+        vc.id = id
+        from.navigationController?.pushViewController(vc, animated: true)
+    }
 }

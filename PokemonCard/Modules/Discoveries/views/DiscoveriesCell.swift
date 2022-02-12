@@ -43,7 +43,7 @@ class DiscoveriesCell: UICollectionViewCell {
     }
     
     deinit {
-        print("🔥 Discoveries Cell deinitilized")
+
     }
 }
 

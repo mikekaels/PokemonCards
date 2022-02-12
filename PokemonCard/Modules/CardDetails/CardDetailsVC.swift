@@ -13,17 +13,27 @@ class CardDetailsVC: UIViewController {
     var presentor: CardDetailsViewToPresenterProtocol?
     public var delegate: CardDetailsDelegate?
     
+    //MARK: - PROPERTIES
+    var otherCards: [Card] = [Card]()
     var id : String?
+    var type: String = "Grass"
+    var page: Int = 1
+    var pageSize: Int = 7
     var imageString: String?
-    
     private let spacing: Int = 30
+    private var totalPage: Int = 50
+    
+    let backgroundView: UIView = UIView()
+        .configure { v in
+            v.backgroundColor = .black
+            v.layer.opacity = 0.7
+        }
+    let preview = UIView()
+    let previewImage = UIImageView()
     
     private var otherCardsData = [OtherCardsData]()
-    
     private var otherCardsCollectionView: UICollectionView?
-    
     private let scrollView: UIScrollView = UIScrollView()
-    
     private let contentView: UIView = UIView()
     
     private let imageView: UIImageView = UIImageView()
@@ -105,57 +115,24 @@ class CardDetailsVC: UIViewController {
         presentor?.fetchCardDetails(id: id)
     }
     
-    let backgroundView: UIView = UIView()
-        .configure { v in
-            v.backgroundColor = .black
-            v.layer.opacity = 0.9
-        }
-    
-    let preview = UIView()
-    let previewImage = UIImageView()
-    
-    @objc func zoomIn() {
-        if let startingFrame = imageView.superview?.convert(imageView.frame, to: nil) {
-            
-            let height = (self.view.frame.width / startingFrame.width) * startingFrame.height
-            
-            preview.frame = CGRect(x: 0, y: 0, width: self.view.frame.width / 1.3, height: height / 1.3)
-            preview.center = self.view.center
-            
-            self.imageView.isHidden = true
-            
-            backgroundView.frame = self.view.frame
-            self.navigationController?.view.addSubview(backgroundView)
-            
-            self.navigationController?.view.addSubview(preview)
-            
-            preview.addSubview(previewImage)
-            
-            previewImage.snp.makeConstraints { make in
-                make.top.right.bottom.left.equalTo(preview)
-            }
-            
-            previewImage.kf.setImage(with: URL(string: self.imageString!))
-            
-            let gesture = UITapGestureRecognizer(target: self, action: #selector(zoomOut))
-            self.previewImage.isUserInteractionEnabled = true
-            previewImage.addGestureRecognizer(gesture)
-        }
-    }
-    
-    @objc func zoomOut() {
-        preview.removeFromSuperview()
-        preview.removeFromSuperview()
-        backgroundView.removeFromSuperview()
-        self.imageView.isHidden = false
-    }
 }
 
 
 
 extension CardDetailsVC: CardDetailsPresenterToViewProtocol {
+    func didGetOtherCards(cards: Cards) {
+        self.otherCards.append(contentsOf: cards.data)
+        
+        DispatchQueue.main.async { [weak self] in
+            self?.otherCardsCollectionView?.reloadData()
+        }
+    }
+    
+    func didErrorGetOtherCards(error: CustomError) {
+        
+    }
+    
     func didFetchCardDetails(card: Card) {
-        print("👉 Card: ", card)
         DispatchQueue.main.async { [weak self] in
             self?.imageView.kf.indicatorType = .activity
             self?.imageString = card.images!.small
@@ -167,15 +144,30 @@ extension CardDetailsVC: CardDetailsPresenterToViewProtocol {
             self?.lbl1Level.text = "\(card.supertype) \(subtype)"
             self?.lbl1Desc.text = card.flavorText
             self?.lbl0Flavor.text = card.flavorText != nil ? "Flavor" : ""
+            self?.type = card.types[0]
+            self?.presentor?.getOtherCards(id: self!.id!, type: self!.type, page: self!.page, pageSize: self!.pageSize)
         }
     }
     
     func didErrorFetchCardDetails(error: CustomError) {
-        print("🔥 Error: ",error)
+
     }
     
     
 }
+
+//MARK: - INFINITE SCROLLING
+extension CardDetailsVC {
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if page < totalPage && indexPath.row == otherCards.count - 1 {
+            self.page += 1
+            
+            self.presentor?.getOtherCards(id: self.id!, type: self.type, page: self.page, pageSize: self.pageSize)
+
+        }
+    }
+}
+
 
 
 //MARK: - UICOLLECTION
@@ -186,20 +178,22 @@ extension CardDetailsVC: UICollectionViewDataSource, UICollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return otherCardsData.count
+        return otherCards.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifier.otherCardsCell, for: indexPath) as? OtherCardsCollectionViewCell else { return UICollectionViewCell()}
-        let imageUrl = otherCardsData[indexPath.row].image
-        cell.setupCell(imageUrl: imageUrl)
+        let imageUrl = otherCards[indexPath.row]
+        cell.setupCell(imageUrl: imageUrl.images!.small)
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(indexPath.row)
+        let id = otherCards[indexPath.row].id
+        presentor?.goToNextCard(id: id, from: self)
     }
 }
+
 
 extension CardDetailsVC {
     public func collectionViewSetup() {
@@ -237,6 +231,42 @@ extension CardDetailsVC {
             make.bottom.equalTo(otherContainer)
         }
         otherCardsCollectionView!.reloadData()
+    }
+}
+
+//MARK: - ZOOM IN AND ZOOM OUT IMAGE
+extension CardDetailsVC {
+    @objc func zoomIn() {
+        if let startingFrame = imageView.superview?.convert(imageView.frame, to: nil) {
+            previewImage.kf.setImage(with: URL(string: self.imageString!))
+            self.imageView.isHidden = true
+            
+            self.preview.frame = startingFrame
+            let height = (self.view.frame.width / startingFrame.width) * startingFrame.height
+            self.preview.frame = CGRect(x: self.view.center.x, y: self.view.center.y, width: self.view.frame.width / 1.3, height: height / 1.3)
+            self.preview.center = self.view.center
+            
+            backgroundView.frame = self.view.frame
+            
+            self.navigationController?.view.addSubview(backgroundView)
+            self.navigationController?.view.addSubview(preview)
+            
+            preview.addSubview(previewImage)
+            previewImage.snp.makeConstraints { make in
+                make.top.right.bottom.left.equalTo(preview)
+            }
+            
+            let gesture = UITapGestureRecognizer(target: self, action: #selector(zoomOut))
+            self.backgroundView.isUserInteractionEnabled = true
+            backgroundView.addGestureRecognizer(gesture)
+        }
+    }
+    
+    @objc func zoomOut() {
+        preview.removeFromSuperview()
+        preview.removeFromSuperview()
+        backgroundView.removeFromSuperview()
+        self.imageView.isHidden = false
     }
 }
 
@@ -333,13 +363,8 @@ extension CardDetailsVC {
             make.left.equalTo(contentView)
             make.height.equalTo(300)
         }
-
-        otherCardsData.append(OtherCardsData(image: "https://images.pokemontcg.io/smp/SM110.png"))
-        otherCardsData.append(OtherCardsData(image: "https://images.pokemontcg.io/smp/SM110.png"))
-        otherCardsData.append(OtherCardsData(image: "https://images.pokemontcg.io/smp/SM110.png"))
-        otherCardsData.append(OtherCardsData(image: "https://images.pokemontcg.io/smp/SM110.png"))
-        otherCardsData.append(OtherCardsData(image: "https://images.pokemontcg.io/smp/SM110.png"))
-        otherCardsData.append(OtherCardsData(image: "https://images.pokemontcg.io/smp/SM110.png"))
+        
         collectionViewSetup()
     }
 }
+
