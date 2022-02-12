@@ -4,7 +4,7 @@
 
 ## Features
 - List of pokemon card
-- Search specfic card
+- Find specific card
 - Detail of card
 
 ## Project
